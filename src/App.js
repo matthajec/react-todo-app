@@ -1,24 +1,19 @@
-import logo from './logo.svg';
-import './App.css';
+//more complex/customizable things are importated from containers, which organizes compound componponents found in the 'components' folder
+import { HeaderContainer } from './containers'
+import { TodoItem } from './components'
+import bgMobileLight from './assets/images/backgrounds/bg-mobile-light.jpg'
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <img className="bg-img" src={bgMobileLight} alt="" />
+      <div className="container">
+        <HeaderContainer />
+        <TodoItem>
+          <TodoItem.Checkbox />
+        </TodoItem>
+      </div>
+    </>
   );
 }
 

@@ -1,0 +1,14 @@
+.todo-item {
+  .todo-item__checkbox {
+    background-color: #fff;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    height: 40px;
+    width: 40px;
+
+    &.checked {
+      background: $checkBg;
+    }
+  }
+}

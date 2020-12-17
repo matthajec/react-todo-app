@@ -1,0 +1,14 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+
+  .header__title {
+    font-size: 1.6em;
+    letter-spacing: .4em;
+    color: $lightThemeMainText;
+  }
+
+  .header__theme-icon {
+    height: 1.6em;
+  }
+}
