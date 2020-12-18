@@ -1,6 +1,5 @@
 //more complex/customizable things are importated from containers, which organizes compound componponents found in the 'components' folder
-import { HeaderContainer } from './containers'
-import { TodoItem } from './components'
+import { HeaderContainer, TodosContainer } from './containers'
 import bgMobileLight from './assets/images/backgrounds/bg-mobile-light.jpg'
 
 function preloadImages(...paths) {
@@ -17,10 +16,7 @@ function App() {
       <img className="bg-img" src={bgMobileLight} alt="" />
       <div className="container">
         <HeaderContainer />
-        <TodoItem>
-          <TodoItem.Checkbox />
-          <TodoItem.Input placeholder="Create a new todo" />
-        </TodoItem>
+        <TodosContainer />
       </div>
     </>
   );

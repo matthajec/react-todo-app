@@ -1,0 +1,102 @@
+.todo-items {
+  margin-bottom: 16px;
+
+  .todo-items__item {
+    border-bottom: 1px solid $lightInputBorder;
+  }
+
+  .todo-items__item:first-child {
+    border-top-left-radius: 7px;
+    border-top-right-radius: 7px;
+  }
+
+  .todo-items__item:last-child {
+    border-bottom-left-radius: 7px;
+    border-bottom-right-radius: 7px;
+    border-bottom: none;
+  }
+
+  .todo-items__item {
+    background-color: #fff;
+    padding: 14px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  
+    .todo-items__checkbox {
+      cursor: pointer;
+      background-color: transparent;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      min-width: 20px;
+      min-height: 20px;
+      border: 2px solid $lightInputBorder;
+      margin-right: 12px;
+  
+      .todo-items__check {
+        height:45%;
+      }
+  
+      &.checked {
+        background: $checkBg;
+        border: none;
+      }
+    }
+
+    .todo-items__add-button {
+      cursor: pointer;
+      background-color: transparent;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      min-width: 20px;
+      min-height: 20px;
+      width: 20px;
+      height: 20px;
+      border: 2px solid $lightInputBorder;
+      margin-right: 12px;
+
+      .todo-items__plus {
+        height:55%;
+        width: 55%;
+        color: black;
+      }
+    }
+  
+    .todo-items__input {
+      flex-grow: 1;
+      border: none;
+      height: 22px;
+      outline: none;
+      font-size: 12px;
+      color: $lightTodoTextColor;
+  
+      &::placeholder {
+        color: $lightTextGreyedOut;
+      }
+    }
+  
+    .todo-items__delete {
+      height: 14px;
+      width: 14px;
+      min-height: 14px;
+      min-width: 14px;
+      cursor: pointer;
+      margin-left: 12px;
+      fill: blue;
+    }
+  
+    .todo-items__text {
+      font-size: 12px;
+      flex-grow: 1;
+      word-break: break-word;
+      color: $lightTodoTextColor;
+
+      &.crossed-off {
+        text-decoration: line-through;
+        color: $lightTextGreyedOut;
+      }
+    }
+  }  
+}

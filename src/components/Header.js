@@ -1,4 +1,4 @@
-import themeIconLight from '../assets/images/icons/icon-moon.svg'
+import { MoonIcon, SunIcon } from './svgs'
 
 function Header({ children, ...restProps }) {
   return (
@@ -13,7 +13,7 @@ Header.Title = function HeaderTitle({ children, ...restProps }) {
 }
 
 Header.ThemeIcon = function HeaderThemeIcon({ ...restProps }) {
-  return <img className="header__theme-icon" src={themeIconLight} alt="" />
+  return <MoonIcon className="header__theme-icon" />
 }
 
 export default Header
