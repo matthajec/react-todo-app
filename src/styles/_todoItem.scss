@@ -1,14 +1,47 @@
 .todo-item {
+  background-color: #fff;
+  padding: 14px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 7px;
+
   .todo-item__checkbox {
-    background-color: #fff;
+    background-color: transparent;
     border-radius: 50%;
     display: grid;
     place-items: center;
-    height: 40px;
-    width: 40px;
+    height: 20px;
+    width: 20px;
+    border: 2px solid $lightInputBorder;
+
+    .todo-item__check {
+      height:45%;
+    }
 
     &.checked {
       background: $checkBg;
+      border: none;
     }
   }
+
+  .todo-item__input {
+    padding-left: 12px;
+    flex-grow: 1;
+    border: none;
+    height: 22px;
+    outline: none;
+    font-size: 12px;
+
+    &::placeholder {
+      color: $lightTextGreyedOut;
+    }
+  }
+
+  .todo-item__delete {
+    height: 18px;
+    width: 18px;
+  }
 }
+
+

@@ -3,6 +3,14 @@ import { HeaderContainer } from './containers'
 import { TodoItem } from './components'
 import bgMobileLight from './assets/images/backgrounds/bg-mobile-light.jpg'
 
+function preloadImages(...paths) {
+  paths.forEach(path => {
+    let img = new Image()
+    img.url = path
+  })
+}
+preloadImages('./assets/images/icons/icon-check.svg', './assets/images/icons/icon-cross.svg')
+
 function App() {
   return (
     <>
@@ -11,6 +19,7 @@ function App() {
         <HeaderContainer />
         <TodoItem>
           <TodoItem.Checkbox />
+          <TodoItem.Input placeholder="Create a new todo" />
         </TodoItem>
       </div>
     </>
