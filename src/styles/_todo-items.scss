@@ -1,5 +1,6 @@
 .todo-items {
-  margin-bottom: 16px;
+  margin-bottom: 22px;
+  font-size: .9em;
 
   .todo-items__item {
     border-bottom: 1px solid $lightInputBorder;
@@ -24,6 +25,7 @@
     align-items: center;
   
     .todo-items__checkbox {
+      user-select: none;
       cursor: pointer;
       background-color: transparent;
       border-radius: 50%;
@@ -45,6 +47,7 @@
     }
 
     .todo-items__add-button {
+      user-select: none;
       cursor: pointer;
       background-color: transparent;
       border-radius: 50%;
@@ -56,8 +59,10 @@
       height: 20px;
       border: 2px solid $lightInputBorder;
       margin-right: 12px;
+      outline: none;
 
       .todo-items__plus {
+        fill: darken($lightInputBorder, 10);
         height:55%;
         width: 55%;
         color: black;
@@ -65,11 +70,11 @@
     }
   
     .todo-items__input {
+      font-family: $fontStack;
       flex-grow: 1;
       border: none;
       height: 22px;
       outline: none;
-      font-size: 12px;
       color: $lightTodoTextColor;
   
       &::placeholder {
@@ -84,11 +89,10 @@
       min-width: 14px;
       cursor: pointer;
       margin-left: 12px;
-      fill: blue;
+      user-select: none;
     }
   
     .todo-items__text {
-      font-size: 12px;
       flex-grow: 1;
       word-break: break-word;
       color: $lightTodoTextColor;

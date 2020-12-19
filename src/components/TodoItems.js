@@ -15,13 +15,13 @@ TodoItems.Item = function TodoItemsItem({ onSubmit, children, ...restProps }) {
   )
 }
 
-TodoItems.Checkbox = function TodoItemsCheckbox({ onClick, isChecked, ...restProps }) {
+TodoItems.Checkbox = function TodoItemsCheckbox({ onClick, isCheckedOff, ...restProps }) {
   return (
     <div
-      className={`todo-items__checkbox ${isChecked ? 'checked' : ''}`}
+      className={`todo-items__checkbox ${isCheckedOff ? 'checked' : ''}`}
       onClick={onClick}
     >
-      {isChecked ? <CheckIcon className="todo-item__check" /> : ''}
+      {isCheckedOff ? <CheckIcon className="todo-item__check" /> : ''}
     </div>
   )
 }
