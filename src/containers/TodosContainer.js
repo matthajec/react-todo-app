@@ -99,6 +99,8 @@ function TodosContainer() {
           <div />
         </TodoItems.Item>
       </TodoItems>
+
+      <p className="m-5 text-center grey">Drag and drop to reorder list</p>
     </>
   )
 }

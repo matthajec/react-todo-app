@@ -75,8 +75,7 @@
       height: 22px;
       outline: none;
       color: $lightTodoTextColor;
-      font-size: .85em;
-
+      font-size: 1em;
   
       &::placeholder {
         color: $lightTextGreyedOut;
@@ -96,25 +95,6 @@
     .todo-items__text {
       word-break: break-word;
       color: $lightTodoTextColor;
-      font-size: .85em;
-
-      &.grow {
-        flex-grow: 1;
-      }
-
-      &.highlighted {
-        color: $highlightColor;
-        font-weight: $fontBoldWeight;
-      }
-
-      &.grey {
-        color: $lightTextGreyedOut;
-      }
-
-      &.crossed-off {
-        text-decoration: line-through;
-        color: $lightTextGreyedOut;
-      }
     }
   }  
 }
