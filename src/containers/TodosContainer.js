@@ -5,6 +5,7 @@ const { TodoItems } = require('../components')
 function TodosContainer() {
   const [todos, setTodos] = useState([])
   const [todoInput, setTodoInput] = useState('')
+  const [viewMode, setViewMode] = useState('all')
 
   const handleTodoInput = e => {
     setTodoInput(e.target.value)
@@ -46,7 +47,11 @@ function TodosContainer() {
       </TodoItems>
 
       <TodoItems>
-        {todos.map((todo, index) => {
+        {todos.filter(todo => {
+          if (viewMode === 'all') return true
+          if (viewMode === 'active') return todo.isDone !== true
+          if (viewMode === 'completed') return todo.isDone === true
+        }).map((todo, index) => {
           return (
             <TodoItems.Item key={index}>
               <TodoItems.Checkbox onClick={() => toggleTodoCompletion(index)} isCheckedOff={todo.isDone} />
@@ -58,7 +63,7 @@ function TodosContainer() {
         <TodoItems.Item>
           <TodoItems.Text isGreyed={true}>{
             todos.filter(todo => todo.isDone === false).length
-          } items left</TodoItems.Text>
+          } item(s) left</TodoItems.Text>
           <TodoItems.Text
             isGreyed={true}
             onClick={() => {
@@ -67,6 +72,31 @@ function TodosContainer() {
               })
             }}
           >Clear Completed</TodoItems.Text>
+        </TodoItems.Item>
+      </TodoItems>
+
+      <TodoItems>
+        <TodoItems.Item>
+          <div /> {/* empty elem for flexbox to center a little more when using justify-content: space-between */}
+          <TodoItems.Text
+            isHighlighted={viewMode === 'all' && true}
+            onClick={() => setViewMode('all')}
+          >
+            All
+          </TodoItems.Text>
+          <TodoItems.Text
+            isHighlighted={viewMode === 'active' && true}
+            onClick={() => setViewMode('active')}
+          >
+            Active
+          </TodoItems.Text>
+          <TodoItems.Text
+            isHighlighted={viewMode === 'completed' && true}
+            onClick={() => setViewMode('completed')}
+          >
+            Completed
+          </TodoItems.Text>
+          <div />
         </TodoItems.Item>
       </TodoItems>
     </>

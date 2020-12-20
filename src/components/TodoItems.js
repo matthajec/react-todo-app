@@ -1,4 +1,4 @@
-// import PropTypes from 'prop-types'
+import PropTypes from 'prop-types'
 import { CheckIcon, CrossIcon, PlusIcon } from './svgs'
 
 function TodoItems({ children, ...restProps }) {
@@ -6,13 +6,11 @@ function TodoItems({ children, ...restProps }) {
 }
 
 TodoItems.Item = function TodoItemsItem({ onSubmit, children, ...restProps }) {
-  return (
-    <form
-      className="todo-items__item"
-      onSubmit={onSubmit}
-      {...restProps}
-    >{children}</form>
-  )
+  if (onSubmit) {
+    return <form className="todo-items__item" onSubmit={onSubmit} {...restProps}>{children}</form>
+  } else {
+    return <div className="todo-items__item" {...restProps}>{children}</div>
+  }
 }
 
 TodoItems.Checkbox = function TodoItemsCheckbox({ onClick, isCheckedOff, ...restProps }) {
@@ -54,7 +52,8 @@ TodoItems.Input = function TodoItemsInput({ placeholder, value, onChange, ...res
   )
 }
 
-TodoItems.Text = function TodoItemsText({ doesGrow, isGreyed, isCrossedOff, children, ...restProps }) {
+TodoItems.Text = function TodoItemsText({ isHighlighted, doesGrow, isGreyed, isCrossedOff, children, ...restProps }) {
+  // isHighlighted will change the text color and increase the font weight to emphasize it
   // doesGrow: sets flex-grow to 1 (true) or 0 (false)
   // isGreyed: if true this make the text color grey
   // isCrossedOff: if true, set the color to grey and put a line through the
@@ -62,8 +61,40 @@ TodoItems.Text = function TodoItemsText({ doesGrow, isGreyed, isCrossedOff, chil
   if (doesGrow) extraClasses += 'grow '
   if (isGreyed) extraClasses += 'grey '
   if (isCrossedOff) extraClasses += 'crossed-off '
+  if (isHighlighted) extraClasses += 'highlighted '
 
   return <p className={`todo-items__text ${extraClasses}`} {...restProps}>{children}</p>
+}
+
+
+TodoItems.Item.propTypes = {
+  onSubmit: PropTypes.func,
+}
+
+TodoItems.Checkbox.propTypes = {
+  onClick: PropTypes.func.isRequired,
+  isCheckedOff: PropTypes.bool
+}
+
+TodoItems.AddButton.propTypes = {
+  onClick: PropTypes.func
+}
+
+TodoItems.Delete.propTypes = {
+  onClick: PropTypes.func.isRequired
+}
+
+TodoItems.Input.propTypes = {
+  placeholder: PropTypes.string,
+  value: PropTypes.string,
+  onChange: PropTypes.func.isRequired
+}
+
+TodoItems.Text.propTypes = {
+  isHighlighted: PropTypes.bool,
+  doesGrow: PropTypes.bool,
+  isGreyed: PropTypes.bool,
+  isCheckedOff: PropTypes.bool
 }
 
 export default TodoItems

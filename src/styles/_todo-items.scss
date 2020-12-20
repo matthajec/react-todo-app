@@ -102,6 +102,11 @@
         flex-grow: 1;
       }
 
+      &.highlighted {
+        color: $highlightColor;
+        font-weight: $fontBoldWeight;
+      }
+
       &.grey {
         color: $lightTextGreyedOut;
       }
