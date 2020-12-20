@@ -54,9 +54,16 @@ TodoItems.Input = function TodoItemsInput({ placeholder, value, onChange, ...res
   )
 }
 
-TodoItems.Text = function TodoItemsText({ isCrossedOff, children, ...restProps }) {
-  return <p className={`todo-items__text ${isCrossedOff ? 'crossed-off' : ''}`} {...restProps}>{children}</p>
-}
+TodoItems.Text = function TodoItemsText({ doesGrow, isGreyed, isCrossedOff, children, ...restProps }) {
+  // doesGrow: sets flex-grow to 1 (true) or 0 (false)
+  // isGreyed: if true this make the text color grey
+  // isCrossedOff: if true, set the color to grey and put a line through the
+  let extraClasses = ''
+  if (doesGrow) extraClasses += 'grow '
+  if (isGreyed) extraClasses += 'grey '
+  if (isCrossedOff) extraClasses += 'crossed-off '
 
+  return <p className={`todo-items__text ${extraClasses}`} {...restProps}>{children}</p>
+}
 
 export default TodoItems

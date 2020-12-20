@@ -50,11 +50,24 @@ function TodosContainer() {
           return (
             <TodoItems.Item key={index}>
               <TodoItems.Checkbox onClick={() => toggleTodoCompletion(index)} isCheckedOff={todo.isDone} />
-              <TodoItems.Text isCrossedOff={todo.isDone}>{todo.desc}</TodoItems.Text>
+              <TodoItems.Text doesGrow={true} isCrossedOff={todo.isDone}>{todo.desc}</TodoItems.Text>
               <TodoItems.Delete onClick={() => deleteTodo(index)} />
             </TodoItems.Item>
           )
         })}
+        <TodoItems.Item>
+          <TodoItems.Text isGreyed={true}>{
+            todos.filter(todo => todo.isDone === false).length
+          } items left</TodoItems.Text>
+          <TodoItems.Text
+            isGreyed={true}
+            onClick={() => {
+              setTodos(currTodos => {
+                return currTodos.filter(todo => todo.isDone === false)
+              })
+            }}
+          >Clear Completed</TodoItems.Text>
+        </TodoItems.Item>
       </TodoItems>
     </>
   )
