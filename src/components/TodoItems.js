@@ -52,18 +52,8 @@ TodoItems.Input = function TodoItemsInput({ placeholder, value, onChange, ...res
   )
 }
 
-TodoItems.Text = function TodoItemsText({ isHighlighted, doesGrow, isGreyed, isCrossedOff, children, ...restProps }) {
-  // isHighlighted will change the text color and increase the font weight to emphasize it
-  // doesGrow: sets flex-grow to 1 (true) or 0 (false)
-  // isGreyed: if true this make the text color grey
-  // isCrossedOff: if true, set the color to grey and put a line through the
-  let extraClasses = ''
-  if (doesGrow) extraClasses += 'grow '
-  if (isGreyed) extraClasses += 'grey '
-  if (isCrossedOff) extraClasses += 'crossed-off '
-  if (isHighlighted) extraClasses += 'highlighted '
-
-  return <p className={`todo-items__text ${extraClasses}`} {...restProps}>{children}</p>
+TodoItems.Text = function TodoItemsText({ children, ...restProps }) {
+  return <p className={`todo-items__text`} {...restProps}>{children}</p>
 }
 
 

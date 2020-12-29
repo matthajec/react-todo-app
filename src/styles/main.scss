@@ -1,4 +1,4 @@
-@import 'vars', 'containers', 'header', 'todo-items';
+@import 'vars', 'containers', 'header', 'todo-items', 'utils';
 
 * {
   margin: 0;
@@ -19,30 +19,4 @@ body {
   width: 100%;
 }
 
-.grow {
-  flex-grow: 1;
-}
-
-.highlighted {
-  color: $highlightColor !important;
-  font-weight: $fontBoldWeight;
-}
-
-.grey {
-  color: $lightTextGreyedOut;
-}
-
-.crossed-off {
-  text-decoration: line-through;
-  color: $lightTextGreyedOut;
-}
-
-
 // these are some bootstrap classes, i only needed a couple so i didn't want to import the whole stylesheet
-.m-5 {
-  margin: 3rem !important;
-}
-
-.text-center {
-  text-align: center !important;
-}

@@ -1,0 +1,31 @@
+// "utility" classes
+
+.grow {
+  flex-grow: 1;
+}
+
+.highlighted {
+  color: $highlightColor !important;
+  font-weight: $fontBoldWeight;
+}
+
+.grey {
+  color: $lightTextGreyedOut;
+}
+
+.crossed-off {
+  text-decoration: line-through;
+  color: $lightTextGreyedOut;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}  
+
+.m-5 {
+  margin: 3rem !important;
+}
+
+.text-center {
+  text-align: center !important;
+}

@@ -1,5 +1,7 @@
 import { useState } from 'react'
+import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
 const { TodoItems } = require('../components')
+
 
 
 function TodosContainer() {
@@ -37,6 +39,12 @@ function TodosContainer() {
     setTodos(newTodos)
   }
 
+  const reorder = (startIndex, endIndex) => {
+    const result = [...todos]
+    const [removed] = result.splice(startIndex, 1)
+    result.splice(endIndex, 0, removed)
+  }
+
   return (
     <>
       <TodoItems>
@@ -48,6 +56,7 @@ function TodosContainer() {
 
       <TodoItems>
         {todos.filter(todo => {
+          reorder()
           if (viewMode === 'all') return true
           if (viewMode === 'active') return todo.isDone !== true
           if (viewMode === 'completed') return todo.isDone === true
@@ -55,13 +64,13 @@ function TodosContainer() {
           return (
             <TodoItems.Item key={index}>
               <TodoItems.Checkbox onClick={() => toggleTodoCompletion(index)} isCheckedOff={todo.isDone} />
-              <TodoItems.Text doesGrow={true} isCrossedOff={todo.isDone}>{todo.desc}</TodoItems.Text>
+              <TodoItems.Text className={`${todo.isDone && 'crossed-off'} grow`}>{todo.desc}</TodoItems.Text>
               <TodoItems.Delete onClick={() => deleteTodo(index)} />
             </TodoItems.Item>
           )
         })}
         <TodoItems.Item>
-          <TodoItems.Text isGreyed={true}>{
+          <TodoItems.Text className='grey'>{
             todos.filter(todo => todo.isDone === false).length
           } item(s) left</TodoItems.Text>
           <TodoItems.Text
@@ -79,19 +88,28 @@ function TodosContainer() {
         <TodoItems.Item>
           <div /> {/* empty elem for flexbox to center a little more when using justify-content: space-between */}
           <TodoItems.Text
-            isHighlighted={viewMode === 'all' && true}
+            className={`
+              ${viewMode === 'all' && 'highlighted '}
+              cursor-pointer 
+            `}
             onClick={() => setViewMode('all')}
           >
             All
           </TodoItems.Text>
           <TodoItems.Text
-            isHighlighted={viewMode === 'active' && true}
+            className={`
+              ${viewMode === 'active' && 'highlighted '}
+              cursor-pointer 
+            `}
             onClick={() => setViewMode('active')}
           >
             Active
           </TodoItems.Text>
           <TodoItems.Text
-            isHighlighted={viewMode === 'completed' && true}
+            className={`
+              ${viewMode === 'completed' && 'highlighted '}
+              cursor-pointer 
+            `}
             onClick={() => setViewMode('completed')}
           >
             Completed
