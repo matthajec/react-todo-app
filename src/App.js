@@ -4,11 +4,12 @@ import { HeaderContainer, TodosContainer } from './containers'
 import { ThemeContext } from './context/theme'
 
 function App() {
-
-  const [theme, setTheme] = useState('light')
+  const localTheme = localStorage.getItem('theme')
+  const [theme, setTheme] = useState(localTheme ? localTheme : 'light') // sets theme to the theme stored in localstorage, if there is none default to 'light'
 
   useEffect(() => {
     document.body.classList = theme
+    localStorage.setItem('theme', theme)
   }, [theme])
 
   return (

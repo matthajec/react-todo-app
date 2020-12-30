@@ -1,13 +1,12 @@
-import { useState, useContext } from 'react'
+import { useState, useContext, useEffect } from 'react'
 import { DragDropContext, Droppable } from 'react-beautiful-dnd'
 import { TodoItems } from '../components'
 import { ThemeContext } from '../context/theme'
 
-
-
 function TodosContainer() {
+  const localTodos = JSON.parse(localStorage.getItem('todos'))
   const { theme } = useContext(ThemeContext)
-  const [todos, setTodos] = useState([])
+  const [todos, setTodos] = useState(localTodos ? localTodos : [])
   const [todoInput, setTodoInput] = useState('')
   const [viewMode, setViewMode] = useState('all')
 
@@ -27,6 +26,10 @@ function TodosContainer() {
       setTodoInput('')
     }
   }
+
+  useEffect(() => {
+    localStorage.setItem('todos', JSON.stringify(todos))
+  }, [todos])
 
   const deleteTodo = index => {
     setTodos(prevTodos => prevTodos.filter((todo, _index) => _index !== index))
