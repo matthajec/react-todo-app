@@ -18,17 +18,12 @@
     $darkInputBorder: #37394e;
     $darkThemeBg: #161620;
 
-
-    $veryDarkBlue: hsl(235, 21%, 11%);
-    $veryDarkDesaturatedBlue: hsl(235, 24%, 19%);
-    $lightGrayishBlue: hsl(234, 39%, 85%);
-    $lightGrayishBlueHover: hsl(236, 33%, 92%);
-    $darkGrayishBlue: hsl(234, 11%, 52%);
-    $veryDarkGrayishBlue: hsl(233, 14%, 35%);
-    $veryDarkGrayishBlue: hsl(237, 14%, 26%);
-
 //typography
   $fontSize: 15px;
+  $desktopFontSize: 18px;
   $fontStack: 'Josefin Sans', Arial, Helvetica, sans-serif;
   $fontNormalWeight: 400; 
   $fontBoldWeight: 700;
+
+//breakpoints
+  $desktopBreakpoint: 700px;

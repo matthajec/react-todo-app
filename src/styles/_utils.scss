@@ -1,7 +1,11 @@
 // "utility" classes
 
 .grow {
-  flex-grow: 1;
+  flex-grow: 1 !important;
+}
+
+.grey {
+  color: $lightTextGreyedOut !important;
 }
 
 .highlighted {
@@ -9,14 +13,10 @@
   font-weight: $fontBoldWeight !important;
 }
 
-.grey {
-  color: $lightTextGreyedOut !important;
-}
-
 .crossed-off {
   text-decoration: line-through !important;
 }
 
 .cursor-pointer {
-  cursor: pointer;
+  cursor: pointer !important;
 }

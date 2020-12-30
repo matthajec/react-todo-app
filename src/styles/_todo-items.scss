@@ -1,7 +1,7 @@
 .todo-items {
   .todo-items__item-list {
-    margin-bottom: 22px;
-    border-radius: 7px;
+    margin-bottom: 1.46rem;
+    border-radius: .46rem;
     overflow: hidden;
   }
 
@@ -10,13 +10,13 @@
   }
 
   .todo-items__draggable__dragging {
-    border-radius: 7px;
+    border-radius: .46rem;
     border: 1px solid $lightInputBorder;
   }
   
   .todo-items__item {
     background-color: $lightThemeTodoBg;
-    padding: 14px 20px;
+    padding: .93rem 1.33rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -29,10 +29,10 @@
       border-radius: 50%;
       display: grid;
       place-items: center;
-      min-width: 20px;
-      min-height: 20px;
+      min-width: 1.33rem;
+      min-height: 1.33rem;
       border: 2px solid $lightInputBorder;
-      margin-right: 12px;
+      margin-right: .8rem;
   
       .todo-items__check {
         height:45%;
@@ -53,10 +53,10 @@
       place-items: center;
       min-width: 20px;
       min-height: 20px;
-      width: 20px;
-      height: 20px;
+      width: 1.33rem;
+      height: 1.33rem;
       border: 2px solid $lightInputBorder;
-      margin-right: 12px;
+      margin-right: .8rem;
       outline: none;
   
       .todo-items__plus {
@@ -70,7 +70,7 @@
       font-family: $fontStack;
       flex-grow: 1;
       border: none;
-      height: 22px;
+      height: 1.46rem;
       outline: none;
       color: $lightTodoTextColor;
       font-size: 1em;
@@ -81,12 +81,12 @@
     }
   
     .todo-items__delete {
-      height: 14px;
-      width: 14px;
-      min-height: 14px;
-      min-width: 14px;
+      height: .93rem;
+      width: .93rem;
+      min-height: .93rem;
+      min-width: .93rem;
       cursor: pointer;
-      margin-left: 12px;
+      margin-left: .8rem;
       user-select: none;
     }
   
