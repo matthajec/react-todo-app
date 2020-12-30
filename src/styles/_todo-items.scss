@@ -1,12 +1,19 @@
 .todo-items {
-  margin-bottom: 22px;
-  border-radius: 7px;
-  overflow: hidden;
-
-  .todo-items__item__dragging {
+  .todo-items__item-list {
+    margin-bottom: 22px;
     border-radius: 7px;
+    overflow: hidden;
   }
 
+  .todo-items__draggable {
+    border-bottom: 1px solid $lightInputBorder;
+  }
+
+  .todo-items__draggable__dragging {
+    border-radius: 7px;
+    border: 1px solid $lightInputBorder;
+  }
+  
   .todo-items__item {
     background-color: #fff;
     padding: 14px 20px;
@@ -35,7 +42,7 @@
         border: none;
       }
     }
-
+  
     .todo-items__add-button {
       user-select: none;
       cursor: pointer;
@@ -50,7 +57,7 @@
       border: 2px solid $lightInputBorder;
       margin-right: 12px;
       outline: none;
-
+  
       .todo-items__plus {
         fill: darken($lightInputBorder, 10);
         height:55%;
@@ -88,4 +95,20 @@
       color: $lightTodoTextColor;
     }
   }  
+  
+  .todo-items__instructions {
+    margin: 3rem;
+    text-align: center;
+    color: $lightTextGreyedOut;
+  }
+}
+
+.todo-items.dark {
+  .todo-items__item {
+    background-color: #25273c;
+
+    .todo-items__input {
+      background-color: #25273c;
+    }
+  }
 }

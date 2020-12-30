@@ -1,15 +1,23 @@
+import { useContext } from 'react'
 import PropTypes from 'prop-types'
 import { CheckIcon, CrossIcon, PlusIcon } from './svgs'
+import { ThemeContext } from '../context/theme'
+import { Draggable } from 'react-beautiful-dnd'
 
 function TodoItems({ children, ...restProps }) {
-  return <div className="todo-items" {...restProps}>{children}</div>
+  const { theme } = useContext(ThemeContext)
+  return <div className={`todo-items ${theme}`} {...restProps}>{children}</div>
 }
 
-TodoItems.Item = function TodoItemsItem({ isDragging, onSubmit, children, ...restProps }) {
+TodoItems.ItemList = function TodoItemsItemList({ children, ...restProps }) {
+  return <div className={`todo-items__item-list`} {...restProps}>{children}</div>
+}
+
+TodoItems.Item = function TodoItemsItem({ onSubmit, children, ...restProps }) {
   if (onSubmit) {
     return <form className="todo-items__item" onSubmit={onSubmit} {...restProps}>{children}</form>
   } else {
-    return <div className={`todo-items__item ${isDragging && 'todo-items__item__dragging'}`} {...restProps}>{children}</div>
+    return <div className="todo-items__item" {...restProps}>{children}</div>
   }
 }
 
@@ -52,14 +60,38 @@ TodoItems.Input = function TodoItemsInput({ placeholder, value, onChange, ...res
   )
 }
 
-TodoItems.Text = function TodoItemsText({ children, ...restProps }) {
-  return <p className={`todo-items__text`} {...restProps}>{children}</p>
+TodoItems.Text = function TodoItemsText({ styles, children, ...restProps }) {
+  return <p styles={styles} className="todo-items__text" {...restProps}>{children}</p>
 }
+
+TodoItems.Instructions = function TodoItemsInsturctions({ children, ...restProps }) {
+  return <p className="todo-items__instructions" {...restProps}>{children}</p>
+}
+
+TodoItems.ItemDraggable = function TodoItemsItemDraggable({ todo, index, toggleTodoCompletion, deleteTodo }) {
+  return (
+    <Draggable draggableId={index.toString()} index={index}>
+      {(provided, snapshot) => (
+        <div
+          className={`todo-items__item todo-items__draggable ${snapshot.isDragging ? 'todo-items__draggable__dragging' : ''}`}
+          ref={provided.innerRef}
+          {...provided.draggableProps}
+          {...provided.dragHandleProps}
+        >
+          <TodoItems.Checkbox onClick={() => toggleTodoCompletion(index)} isCheckedOff={todo.isDone} />
+          <TodoItems.Text className={`${todo.isDone && 'crossed-off'} grow`}>{todo.desc}</TodoItems.Text>
+          <TodoItems.Delete onClick={() => deleteTodo(index)} />
+        </div>
+      )
+      }
+    </Draggable>
+  )
+}
+
 
 
 TodoItems.Item.propTypes = {
   onSubmit: PropTypes.func,
-  isDragging: PropTypes.bool
 }
 
 TodoItems.Checkbox.propTypes = {

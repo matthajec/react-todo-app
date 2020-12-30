@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
+import { DragDropContext, Droppable } from 'react-beautiful-dnd'
 const { TodoItems } = require('../components')
 
 
@@ -56,15 +56,15 @@ function TodosContainer() {
   }
 
   return (
-    <>
-      <TodoItems>
+    <TodoItems>
+      <TodoItems.ItemList>
         <TodoItems.Item onSubmit={handleNewTodoSubmit}>
           <TodoItems.AddButton />
           <TodoItems.Input onChange={handleTodoInput} value={todoInput} placeholder="Create a new todo" />
         </TodoItems.Item>
-      </TodoItems>
+      </TodoItems.ItemList>
 
-      <TodoItems>
+      <TodoItems.ItemList>
         <DragDropContext onDragEnd={onDragEnd}>
           <Droppable droppableId="droppable">
             {provided => (
@@ -78,25 +78,13 @@ function TodosContainer() {
                   if (viewMode === 'completed') return todo.isDone === true
                   return true
                 }).map((todo, index) => (
-                  <Draggable key={index} draggableId={index.toString()} index={index}>
-                    {(provided, snapshot) => {
-                      return (
-                        <div
-                          ref={provided.innerRef}
-                          {...provided.draggableProps}
-                          {...provided.dragHandleProps}
-                        >
-                          <TodoItems.Item isDragging={snapshot.isDragging}>
-                            <TodoItems.Checkbox onClick={() => toggleTodoCompletion(index)} isCheckedOff={todo.isDone} />
-                            <TodoItems.Text className={`${todo.isDone && 'crossed-off'} grow`}>{todo.desc}</TodoItems.Text>
-                            <TodoItems.Delete onClick={() => deleteTodo(index)} />
-                            {provided.placeholder}
-
-                          </TodoItems.Item>
-                        </div>
-                      )
-                    }}
-                  </Draggable>
+                  <TodoItems.ItemDraggable
+                    key={index}
+                    todo={todo}
+                    index={index}
+                    deleteTodo={deleteTodo}
+                    toggleTodoCompletion={toggleTodoCompletion}
+                  />
                 ))}
                 {provided.placeholder}
               </div>
@@ -117,9 +105,9 @@ function TodosContainer() {
             }}
           >Clear Completed</TodoItems.Text>
         </TodoItems.Item>
-      </TodoItems>
+      </TodoItems.ItemList>
 
-      <TodoItems>
+      <TodoItems.ItemList>
         <TodoItems.Item>
           <div /> {/* empty elem for flexbox to center a little more when using justify-content: space-between */}
           <TodoItems.Text
@@ -151,10 +139,10 @@ function TodosContainer() {
           </TodoItems.Text>
           <div />
         </TodoItems.Item>
-      </TodoItems>
+      </TodoItems.ItemList>
 
-      <p className="m-5 text-center grey">Drag and drop to reorder list</p>
-    </>
+      <TodoItems.Instructions>Drag and drop to reorder</TodoItems.Instructions>
+    </TodoItems >
   )
 }
 

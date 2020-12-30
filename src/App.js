@@ -1,24 +1,20 @@
-//more complex/customizable things are importated from containers, which organizes compound componponents found in the 'components' folder
+import { useState } from 'react'
 import { HeaderContainer, TodosContainer } from './containers'
 import bgMobileLight from './assets/images/backgrounds/bg-mobile-light.jpg'
-
-function preloadImages(...paths) {
-  paths.forEach(path => {
-    let img = new Image()
-    img.url = path
-  })
-}
-preloadImages('./assets/images/icons/icon-check.svg', './assets/images/icons/icon-cross.svg')
+import { ThemeContext } from './context/theme'
 
 function App() {
+
+  const [theme, setTheme] = useState('light')
+
   return (
-    <>
+    <ThemeContext.Provider value={{ theme, setTheme }}>
       <img className="bg-img" src={bgMobileLight} alt="" />
       <div className="container">
         <HeaderContainer />
         <TodosContainer />
       </div>
-    </>
+    </ThemeContext.Provider>
   );
 }
 
