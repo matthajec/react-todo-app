@@ -1,10 +1,12 @@
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 import { DragDropContext, Droppable } from 'react-beautiful-dnd'
-const { TodoItems } = require('../components')
+import { TodoItems } from '../components'
+import { ThemeContext } from '../context/theme'
 
 
 
 function TodosContainer() {
+  const { theme } = useContext(ThemeContext)
   const [todos, setTodos] = useState([])
   const [todoInput, setTodoInput] = useState('')
   const [viewMode, setViewMode] = useState('all')
@@ -113,6 +115,7 @@ function TodosContainer() {
           <TodoItems.Text
             className={`
               ${viewMode === 'all' && 'highlighted '}
+              ${theme === "dark" && 'grey'}
               cursor-pointer 
             `}
             onClick={() => setViewMode('all')}
@@ -122,6 +125,7 @@ function TodosContainer() {
           <TodoItems.Text
             className={`
               ${viewMode === 'active' && 'highlighted '}
+              ${theme === "dark" && 'grey'}
               cursor-pointer 
             `}
             onClick={() => setViewMode('active')}
@@ -131,6 +135,7 @@ function TodosContainer() {
           <TodoItems.Text
             className={`
               ${viewMode === 'completed' && 'highlighted '}
+              ${theme === "dark" && 'grey'}
               cursor-pointer 
             `}
             onClick={() => setViewMode('completed')}

@@ -6,16 +6,15 @@
 
 .highlighted {
   color: $highlightColor !important;
-  font-weight: $fontBoldWeight;
+  font-weight: $fontBoldWeight !important;
 }
 
 .grey {
-  color: $lightTextGreyedOut;
+  color: $lightTextGreyedOut !important;
 }
 
 .crossed-off {
-  text-decoration: line-through;
-  color: $lightTextGreyedOut;
+  text-decoration: line-through !important;
 }
 
 .cursor-pointer {

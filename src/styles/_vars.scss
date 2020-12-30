@@ -5,6 +5,7 @@
     $highlightColor: hsl(220, 98%, 61%);
 
   //light theme
+    $lightThemeTodoBg: #fff;
     $lightThemeBg: #f6f6f8;
     $lightThemeMainText: #fffcff;
     $lightInputBorder: #e6e5ea;
@@ -12,6 +13,12 @@
     $lightTodoTextColor: #4d5066;
 
   //dark theme
+    $darkThemeTodoBg: #25273c;
+    $darkThemeTodoTextColor: #dadcf3;
+    $darkInputBorder: #37394e;
+    $darkThemeBg: #161620;
+
+
     $veryDarkBlue: hsl(235, 21%, 11%);
     $veryDarkDesaturatedBlue: hsl(235, 24%, 19%);
     $lightGrayishBlue: hsl(234, 39%, 85%);

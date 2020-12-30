@@ -15,13 +15,14 @@
   }
   
   .todo-items__item {
-    background-color: #fff;
+    background-color: $lightThemeTodoBg;
     padding: 14px 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
   
     .todo-items__checkbox {
+      background-color: $lightThemeTodoBg;
       user-select: none;
       cursor: pointer;
       background-color: transparent;
@@ -62,7 +63,6 @@
         fill: darken($lightInputBorder, 10);
         height:55%;
         width: 55%;
-        color: black;
       }
     }
   
@@ -104,11 +104,37 @@
 }
 
 .todo-items.dark {
+
+  .todo-items__draggable {
+    border-bottom: 1px solid $darkInputBorder;
+  }
+
+  .todo-items__draggable__dragging {
+    border: 1px solid $darkInputBorder;
+  }
+
   .todo-items__item {
-    background-color: #25273c;
+    background-color: $darkThemeTodoBg;
+
+    .todo-items__text {
+      color: $darkThemeTodoTextColor;
+    }
 
     .todo-items__input {
-      background-color: #25273c;
+      background-color: $darkThemeTodoBg;
+      color: $darkThemeTodoTextColor
+    }
+
+    .todo-items__add-button {
+      border: 2px solid $darkInputBorder;
+  
+      .todo-items__plus {
+        fill: lighten($darkInputBorder, 5);
+      }
+    }
+
+    .todo-items__checkbox {
+      border: 2px solid $darkInputBorder;
     }
   }
 }

@@ -60,8 +60,8 @@ TodoItems.Input = function TodoItemsInput({ placeholder, value, onChange, ...res
   )
 }
 
-TodoItems.Text = function TodoItemsText({ styles, children, ...restProps }) {
-  return <p styles={styles} className="todo-items__text" {...restProps}>{children}</p>
+TodoItems.Text = function TodoItemsText({ children, ...restProps }) {
+  return <p className="todo-items__text" {...restProps}>{children}</p>
 }
 
 TodoItems.Instructions = function TodoItemsInsturctions({ children, ...restProps }) {
@@ -79,7 +79,7 @@ TodoItems.ItemDraggable = function TodoItemsItemDraggable({ todo, index, toggleT
           {...provided.dragHandleProps}
         >
           <TodoItems.Checkbox onClick={() => toggleTodoCompletion(index)} isCheckedOff={todo.isDone} />
-          <TodoItems.Text className={`${todo.isDone && 'crossed-off'} grow`}>{todo.desc}</TodoItems.Text>
+          <TodoItems.Text className={`todo-items__text ${todo.isDone ? 'crossed-off grey' : ''} grow`}>{todo.desc}</TodoItems.Text>
           <TodoItems.Delete onClick={() => deleteTodo(index)} />
         </div>
       )
