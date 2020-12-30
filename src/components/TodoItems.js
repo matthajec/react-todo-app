@@ -38,6 +38,7 @@ TodoItems.AddButton = function TodoItemsAddButton({ onClick, ...restProps }) {
       className='todo-items__add-button'
       type='submit'
       onClick={onClick}
+      aria-label="Add todo"
     >
       <PlusIcon className="todo-items__plus"  {...restProps} />
     </button>
@@ -50,13 +51,17 @@ TodoItems.Delete = function TodoItemsDelete({ onClick, ...restProps }) {
 
 TodoItems.Input = function TodoItemsInput({ placeholder, value, onChange, ...restProps }) {
   return (
-    <input
-      className="todo-items__input"
-      placeholder={placeholder}
-      value={value}
-      onChange={onChange}
-      {...restProps}
-    />
+    <>
+      <label style={{ display: 'none' }} for="todo-input">Create a new todo</label>
+      <input
+        id="todo-input"
+        className="todo-items__input"
+        placeholder={placeholder}
+        value={value}
+        onChange={onChange}
+        {...restProps}
+      />
+    </>
   )
 }
 
