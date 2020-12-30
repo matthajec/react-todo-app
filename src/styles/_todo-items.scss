@@ -1,20 +1,8 @@
 .todo-items {
   margin-bottom: 22px;
+  border-radius: 7px;
+  overflow: hidden;
 
-  .todo-items__item {
-    border-bottom: 1px solid $lightInputBorder;
-  }
-
-  .todo-items__item:first-child {
-    border-top-left-radius: 7px;
-    border-top-right-radius: 7px;
-  }
-
-  .todo-items__item:last-child {
-    border-bottom-left-radius: 7px;
-    border-bottom-right-radius: 7px;
-    border-bottom: none;
-  }
 
   .todo-items__item {
     background-color: #fff;

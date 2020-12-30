@@ -80,11 +80,6 @@ TodoItems.Input.propTypes = {
   onChange: PropTypes.func.isRequired
 }
 
-TodoItems.Text.propTypes = {
-  isHighlighted: PropTypes.bool,
-  doesGrow: PropTypes.bool,
-  isGreyed: PropTypes.bool,
-  isCheckedOff: PropTypes.bool
-}
+TodoItems.Text.propTypes = {}
 
 export default TodoItems

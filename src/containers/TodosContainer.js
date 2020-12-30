@@ -40,9 +40,19 @@ function TodosContainer() {
   }
 
   const reorder = (startIndex, endIndex) => {
-    const result = [...todos]
-    const [removed] = result.splice(startIndex, 1)
-    result.splice(endIndex, 0, removed)
+    const result = [...todos];
+    const [removed] = result.splice(startIndex, 1);
+    result.splice(endIndex, 0, removed);
+
+    return result;
+  };
+
+  const onDragEnd = result => {
+    if (!result.destination) { // case for being dropped outside the list
+      return;
+    }
+
+    setTodos(reorder(result.source.index, result.destination.index))
   }
 
   return (
@@ -55,26 +65,51 @@ function TodosContainer() {
       </TodoItems>
 
       <TodoItems>
-        {todos.filter(todo => {
-          reorder()
-          if (viewMode === 'all') return true
-          if (viewMode === 'active') return todo.isDone !== true
-          if (viewMode === 'completed') return todo.isDone === true
-        }).map((todo, index) => {
-          return (
-            <TodoItems.Item key={index}>
-              <TodoItems.Checkbox onClick={() => toggleTodoCompletion(index)} isCheckedOff={todo.isDone} />
-              <TodoItems.Text className={`${todo.isDone && 'crossed-off'} grow`}>{todo.desc}</TodoItems.Text>
-              <TodoItems.Delete onClick={() => deleteTodo(index)} />
-            </TodoItems.Item>
-          )
-        })}
+        <DragDropContext onDragEnd={onDragEnd}>
+          <Droppable droppableId="droppable">
+            {provided => (
+              <div
+                {...provided.droppableProps}
+                ref={provided.innerRef}
+              >
+                {todos.filter(todo => {
+                  if (viewMode === 'all') return true
+                  if (viewMode === 'active') return todo.isDone !== true
+                  if (viewMode === 'completed') return todo.isDone === true
+                  return true
+                }).map((todo, index) => (
+                  <Draggable key={index} draggableId={index.toString()} index={index}>
+                    {provided => {
+                      return (
+                        <div
+                          ref={provided.innerRef}
+                          {...provided.draggableProps}
+                          {...provided.dragHandleProps}
+                        >
+                          <TodoItems.Item>
+                            <TodoItems.Checkbox onClick={() => toggleTodoCompletion(index)} isCheckedOff={todo.isDone} />
+                            <TodoItems.Text className={`${todo.isDone && 'crossed-off'} grow`}>{todo.desc}</TodoItems.Text>
+                            <TodoItems.Delete onClick={() => deleteTodo(index)} />
+                            {provided.placeholder}
+
+                          </TodoItems.Item>
+                        </div>
+                      )
+                    }}
+                  </Draggable>
+                ))}
+                {provided.placeholder}
+              </div>
+            )}
+          </Droppable>
+        </DragDropContext>
+
         <TodoItems.Item>
-          <TodoItems.Text className='grey'>{
-            todos.filter(todo => todo.isDone === false).length
-          } item(s) left</TodoItems.Text>
+          <TodoItems.Text className='grey'>
+            {todos.filter(todo => todo.isDone === false).length} item(s) left
+          </TodoItems.Text>
           <TodoItems.Text
-            isGreyed={true}
+            className='grey'
             onClick={() => {
               setTodos(currTodos => {
                 return currTodos.filter(todo => todo.isDone === false)
