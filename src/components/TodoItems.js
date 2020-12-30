@@ -5,11 +5,11 @@ function TodoItems({ children, ...restProps }) {
   return <div className="todo-items" {...restProps}>{children}</div>
 }
 
-TodoItems.Item = function TodoItemsItem({ onSubmit, children, ...restProps }) {
+TodoItems.Item = function TodoItemsItem({ isDragging, onSubmit, children, ...restProps }) {
   if (onSubmit) {
     return <form className="todo-items__item" onSubmit={onSubmit} {...restProps}>{children}</form>
   } else {
-    return <div className="todo-items__item" {...restProps}>{children}</div>
+    return <div className={`todo-items__item ${isDragging && 'todo-items__item__dragging'}`} {...restProps}>{children}</div>
   }
 }
 
@@ -59,6 +59,7 @@ TodoItems.Text = function TodoItemsText({ children, ...restProps }) {
 
 TodoItems.Item.propTypes = {
   onSubmit: PropTypes.func,
+  isDragging: PropTypes.bool
 }
 
 TodoItems.Checkbox.propTypes = {

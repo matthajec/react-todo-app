@@ -3,6 +3,9 @@
   border-radius: 7px;
   overflow: hidden;
 
+  .todo-items__item__dragging {
+    border-radius: 7px;
+  }
 
   .todo-items__item {
     background-color: #fff;

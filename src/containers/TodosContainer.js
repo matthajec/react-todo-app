@@ -79,14 +79,14 @@ function TodosContainer() {
                   return true
                 }).map((todo, index) => (
                   <Draggable key={index} draggableId={index.toString()} index={index}>
-                    {provided => {
+                    {(provided, snapshot) => {
                       return (
                         <div
                           ref={provided.innerRef}
                           {...provided.draggableProps}
                           {...provided.dragHandleProps}
                         >
-                          <TodoItems.Item>
+                          <TodoItems.Item isDragging={snapshot.isDragging}>
                             <TodoItems.Checkbox onClick={() => toggleTodoCompletion(index)} isCheckedOff={todo.isDone} />
                             <TodoItems.Text className={`${todo.isDone && 'crossed-off'} grow`}>{todo.desc}</TodoItems.Text>
                             <TodoItems.Delete onClick={() => deleteTodo(index)} />
