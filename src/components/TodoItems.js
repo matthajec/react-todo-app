@@ -1,25 +1,25 @@
-import { useContext } from 'react'
-import PropTypes from 'prop-types'
-import { CheckIcon, CrossIcon, PlusIcon } from './svgs'
-import { ThemeContext } from '../context/theme'
-import { Draggable } from 'react-beautiful-dnd'
+import { useContext } from 'react';
+import PropTypes from 'prop-types';
+import { CheckIcon, CrossIcon, PlusIcon } from './svgs';
+import { ThemeContext } from '../context/theme';
+import { Draggable } from 'react-beautiful-dnd';
 
 function TodoItems({ children, ...restProps }) {
-  const { theme } = useContext(ThemeContext)
-  return <div className={`todo-items ${theme}`} {...restProps}>{children}</div>
+  const { theme } = useContext(ThemeContext);
+  return <div className={`todo-items ${theme}`} {...restProps}>{children}</div>;
 }
 
 TodoItems.ItemList = function TodoItemsItemList({ children, ...restProps }) {
-  return <div className={`todo-items__item-list`} {...restProps}>{children}</div>
-}
+  return <div className={`todo-items__item-list`} {...restProps}>{children}</div>;
+};
 
 TodoItems.Item = function TodoItemsItem({ onSubmit, children, ...restProps }) {
   if (onSubmit) {
-    return <form className="todo-items__item" onSubmit={onSubmit} {...restProps}>{children}</form>
+    return <form className="todo-items__item" onSubmit={onSubmit} {...restProps}>{children}</form>;
   } else {
-    return <div className="todo-items__item" {...restProps}>{children}</div>
+    return <div className="todo-items__item" {...restProps}>{children}</div>;
   }
-}
+};
 
 TodoItems.Checkbox = function TodoItemsCheckbox({ onClick, isCheckedOff, ...restProps }) {
   return (
@@ -29,8 +29,8 @@ TodoItems.Checkbox = function TodoItemsCheckbox({ onClick, isCheckedOff, ...rest
     >
       {isCheckedOff ? <CheckIcon className="todo-item__check" /> : ''}
     </div>
-  )
-}
+  );
+};
 
 TodoItems.AddButton = function TodoItemsAddButton({ onClick, ...restProps }) {
   return (
@@ -42,17 +42,17 @@ TodoItems.AddButton = function TodoItemsAddButton({ onClick, ...restProps }) {
     >
       <PlusIcon className="todo-items__plus"  {...restProps} />
     </button>
-  )
-}
+  );
+};
 
 TodoItems.Delete = function TodoItemsDelete({ onClick, ...restProps }) {
-  return <CrossIcon className="todo-items__delete" onClick={onClick} {...restProps} />
-}
+  return <CrossIcon className="todo-items__delete" onClick={onClick} {...restProps} />;
+};
 
 TodoItems.Input = function TodoItemsInput({ placeholder, value, onChange, ...restProps }) {
   return (
     <>
-      <label style={{ display: 'none' }} for="todo-input">Create a new todo</label>
+      <label style={{ display: 'none' }} htmlFor="todo-input">Create a new todo</label>
       <input
         id="todo-input"
         className="todo-items__input"
@@ -62,16 +62,16 @@ TodoItems.Input = function TodoItemsInput({ placeholder, value, onChange, ...res
         {...restProps}
       />
     </>
-  )
-}
+  );
+};
 
 TodoItems.Text = function TodoItemsText({ children, ...restProps }) {
-  return <p className="todo-items__text" {...restProps}>{children}</p>
-}
+  return <p className="todo-items__text" {...restProps}>{children}</p>;
+};
 
 TodoItems.Instructions = function TodoItemsInsturctions({ children, ...restProps }) {
-  return <p className="todo-items__instructions" {...restProps}>{children}</p>
-}
+  return <p className="todo-items__instructions" {...restProps}>{children}</p>;
+};
 
 TodoItems.ItemDraggable = function TodoItemsItemDraggable({ todo, index, toggleTodoCompletion, deleteTodo }) {
   return (
@@ -90,34 +90,34 @@ TodoItems.ItemDraggable = function TodoItemsItemDraggable({ todo, index, toggleT
       )
       }
     </Draggable>
-  )
-}
+  );
+};
 
 
 
 TodoItems.Item.propTypes = {
   onSubmit: PropTypes.func,
-}
+};
 
 TodoItems.Checkbox.propTypes = {
   onClick: PropTypes.func.isRequired,
   isCheckedOff: PropTypes.bool
-}
+};
 
 TodoItems.AddButton.propTypes = {
   onClick: PropTypes.func
-}
+};
 
 TodoItems.Delete.propTypes = {
   onClick: PropTypes.func.isRequired
-}
+};
 
 TodoItems.Input.propTypes = {
   placeholder: PropTypes.string,
   value: PropTypes.string,
   onChange: PropTypes.func.isRequired
-}
+};
 
-TodoItems.Text.propTypes = {}
+TodoItems.Text.propTypes = {};
 
-export default TodoItems
+export default TodoItems;
